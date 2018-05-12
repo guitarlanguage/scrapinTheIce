@@ -1,8 +1,11 @@
 //what's this file for?
-// getting all unsaved articles, scraping nhl.com articles, get articles from databse,
+// getting all unsaved articles, scraping nhl.com articles, get articles from database,
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const db = require("./../../config/keys").mongoURI;
+var axios = require("axios");
+var cheerio = require("cheerio");
 
 //load Article model
 const Article = require("../../models/Article");
@@ -75,21 +78,6 @@ router.get("/scrape", function(req, res) {
           return res.json(err);
         });
     });
-
-    // Route for getting all Articles from the db
-    router.get("/articles", function(req, res) {
-      // Grab every document in the Articles collection
-      db.Article.find({})
-        .then(function(dbArticle) {
-          // If we were able to successfully find Articles, send them back to the client
-          res.json(dbArticle);
-        })
-        .catch(function(err) {
-          // If an error occurred, send it to the client
-          res.json(err);
-        });
-    });
-
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
     res.redirect("/");

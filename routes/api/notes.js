@@ -3,6 +3,9 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const db = require("./../../config/keys").mongoURI;
+var axios = require("axios");
+var cheerio = require("cheerio");
 
 //load Article model
 const Article = require("../../models/Article");

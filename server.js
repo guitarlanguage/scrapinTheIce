@@ -6,17 +6,21 @@ var exphbs = require("express-handlebars");
 var axios = require("axios");
 var cheerio = require("cheerio");
 const articles = require("./routes/api/articles");
-const notes = require("./routes/api/Notes");
+const notes = require("./routes/api/notes");
+// const index = require("./routes/api/index");
 
-const app = express();
+var app = express();
 
 //body parser middleware
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // parse application/json
 
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
+
 //DB config
-const db = require("./config/keys").mongoURI;
+const db = require("./config/keys.js").mongoURI;
 
 //connect to MongoDB
 mongoose
@@ -42,9 +46,7 @@ app.use(logger("dev"));
 // Use Routes
 app.use("/api/articles", articles);
 app.use("/api/notes", notes);
-
-// Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+// app.use("/api/index", index);
 
 // for localhost: 3000 or to push to build
 var PORT = process.env.PORT || 3000;
