@@ -111,3 +111,5 @@ router.get("/articles", function(req, res) {
       res.json(err);
     });
 });
+
+module.exports = router;
