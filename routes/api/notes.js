@@ -3,7 +3,6 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const router = express.Router();
 
 //load Article model
 const Article = require("../../models/Article");
@@ -29,7 +28,7 @@ router.get("/articles/:id", function(req, res) {
 });
 
 // Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function(req, res) {
+router.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
   db.Note.create(req.body)
     .then(function(dbNote) {
@@ -52,7 +51,7 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
-app.get("/saved", function(req, res) {
+router.get("/saved", function(req, res) {
   db.Article.find(
     {
       savedstatus: true
@@ -77,7 +76,7 @@ app.get("/saved", function(req, res) {
   );
 });
 
-app.post("/save/:id", function(req, res) {
+router.post("/save/:id", function(req, res) {
   db.Article.findById(req.params.id, function(err, data) {
     db.Article.findByIdAndUpdate(
       req.params.id,
@@ -96,7 +95,7 @@ app.post("/save/:id", function(req, res) {
   });
 });
 
-app.post("/delete/:id", function(req, res) {
+router.post("/delete/:id", function(req, res) {
   db.Article.findById(req.params.id, function(err, data) {
     db.Article.findByIdAndRemove(
       {

@@ -5,8 +5,8 @@ var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 var axios = require("axios");
 var cheerio = require("cheerio");
-const Article = require("./routes/api/articles");
-const Notes = require("./routes/api/Notes");
+const articles = require("./routes/api/articles");
+const notes = require("./routes/api/Notes");
 
 const app = express();
 
@@ -40,8 +40,8 @@ app.set("view engine", "handlebars");
 app.use(logger("dev"));
 
 // Use Routes
-app.use("/api/users", users);
-app.use("/api/profile", profile);
+app.use("/api/articles", articles);
+app.use("/api/notes", notes);
 
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));

@@ -3,7 +3,6 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const router = express.Router();
 
 //load Article model
 const Article = require("../../models/Article");
