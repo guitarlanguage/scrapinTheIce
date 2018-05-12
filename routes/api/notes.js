@@ -7,6 +7,8 @@ const router = express.Router();
 
 //load Article model
 const Article = require("../../models/Article");
+//load Note model
+const Note = require("../../models/Note");
 
 //@route                GET api/articles/:id
 //what this does...     Route for getting a specific Article by id, populate it with it's note

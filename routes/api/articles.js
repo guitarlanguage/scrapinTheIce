@@ -7,6 +7,8 @@ const router = express.Router();
 
 //load Article model
 const Article = require("../../models/Article");
+//load Note model
+const Note = require("../../models/Note");
 
 //@route                GET api/articles
 //what this does...     gets all unsaved articles
